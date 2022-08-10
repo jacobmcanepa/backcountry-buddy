@@ -17,31 +17,40 @@
 <body>
     <div>
         <header>
-            <h1>Header</h1>
+            <h1>Backcountry Buddy</h1>
         </header>
-        <main class="ui stackable three column padded relaxed grid">
+        <main class="ui 4 column grid border">
             <!--campground column start
             Will we append the list of campgrounds here based on a search? if so, leave this empty-->
-            <div id="campground-list" class="column">
-                Campground List
+            <div id="campground-list" class="three wide column border">
+                <h2>Campground grounds</h2>
+                <label for="state">Choose a state:</label>
+                <select name="state" id="state"></select>
+                <label for="county">Choose a county:</label>
+                <select name="county" id="county"></select>
+                <ul class="" id="campground-ul">
+
+                </ul>
             </div>
             <!--campground column end-->
-
+            
+            <div class="ui thirteen wide column border">
             <!--weather column start-->
-            <div id="weather" class="column">
+            <div id="weather" class="one column row border">
                 Weather Tab
             </div>
             <!--weather column end-->
 
             <!--map column start-->
-            <div id="map" class="column">
+            <div id="map" class="one column row border">
                 Map Tab
             </div>
             <!--map column end-->
+        </div>
         </main>
         <!--Do we need a footer?-->
         <footer>
-            <p>Footer</p>
+            <p>group8inc</p>
         </footer>
     </div>
 

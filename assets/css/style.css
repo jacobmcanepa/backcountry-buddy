@@ -39,3 +39,8 @@ div .column {
     font-weight: bold;
     font-size: 20px;
 }
+
+.border {
+    border: 1px solid black
+}
+/* created border to see work on grid for html content can be deleted later*/
