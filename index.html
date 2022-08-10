@@ -1,13 +1,59 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
+    <!-- Styles -->
     <title>Backcountry Buddy</title>
 </head>
+
+<!-- SemanticUI uses a 16 grid layout compared to Bootstrap's 12, just an FYI -->
+
 <body>
-    
-    <script src="./assets/js/script.js"></script>
+    <div>
+        <header>
+            <h1>Header</h1>
+        </header>
+        <main class="ui stackable three column padded relaxed grid">
+            <!--campground column start
+            Will we append the list of campgrounds here based on a search? if so, leave this empty-->
+            <div id="campground-list" class="column">
+                Campground List
+            </div>
+            <!--campground column end-->
+
+            <!--weather column start-->
+            <div id="weather" class="column">
+                Weather Tab
+            </div>
+            <!--weather column end-->
+
+            <!--map column start-->
+            <div id="map" class="column">
+                Map Tab
+            </div>
+            <!--map column end-->
+        </main>
+        <!--Do we need a footer?-->
+        <footer>
+            <p>Footer</p>
+        </footer>
+    </div>
+
+<!-- Scripts -->
+    <!-- 
+        I put Jquery and Jquery-UI into here in case we want to use it. -Nathan
+    -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+<script src="./assets/js/script.js"></script>
+<!-- Scripts-->
 </body>
+
 </html>

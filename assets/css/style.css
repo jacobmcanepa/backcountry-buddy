@@ -1,0 +1,41 @@
+:root {
+--main-colour: rgb(248, 225, 209);
+--secondary-colour: rgb(150, 120, 95);
+--tritiary-colour: rgb(125, 82, 73);
+}
+
+/* temporary styling, might swap around CSS frameworks */
+
+header {
+    background-color: var(--secondary-colour);
+    color: var(--main-colour);
+    padding: 30px;
+    text-align: center;
+}
+
+header h1 {
+    font-weight: bolder;
+    font-size: 48px;
+}
+
+footer {
+    background-color: var(--secondary-colour);
+    color: var(--main-colour);
+    padding: 20px;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 24px;
+}
+
+main {
+    min-height: 100%;
+}
+
+div .column {
+    background-color: var(--main-colour);
+    color: var(--tritiary-colour);
+    padding: 5px;
+    text-align: left;
+    font-weight: bold;
+    font-size: 20px;
+}
