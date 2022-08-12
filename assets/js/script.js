@@ -52,9 +52,9 @@ var getCampground = function(lat, lon) {
                 if (i === 20) {
                     break;
                 } else {
-                    var siteName = resultInfo[i].getAttribute("facilityName");
-                    var siteLat = resultInfo[i].getAttribute("latitude");
-                    var siteLon = resultInfo[i].getAttribute("longitude");
+                    var siteName = resultInfo[i].getAttribute("facilityName"),
+                        siteLat = resultInfo[i].getAttribute("latitude"),
+                        siteLon = resultInfo[i].getAttribute("longitude");
 
                     var listItem = document.createElement("li");
                     listItem.textContent = siteName;
