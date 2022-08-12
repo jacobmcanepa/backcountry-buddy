@@ -23,14 +23,14 @@
             <!--campground column start
             Will we append the list of campgrounds here based on a search? if so, leave this empty-->
             <div id="campground-list" class="three wide column border">
-                <h2>Campground grounds</h2>
-                <label for="state">Choose a state:</label>
-                <select name="state" id="state"></select>
-                <label for="county">Choose a county:</label>
-                <select name="county" id="county"></select>
-                <ul class="" id="campground-ul">
+                <h2>Search Campgrounds</h2>
 
-                </ul>
+                <form id="form">
+                    <input placeholder="e.g. Los Angeles" type="text" autofocus="true" id="location" />
+                    <button type="submit">Search</button>
+                </form>
+
+                <ul class="" id="campground-ul"></ul>
             </div>
             <!--campground column end-->
             
