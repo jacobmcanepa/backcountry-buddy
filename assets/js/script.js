@@ -53,7 +53,7 @@ var getCampground = function(lat, lon) {
 
             // retrieves 20 campground names and displays them on DOM
             for (var i = 0; i < resultInfo.length; i++) {
-                if (i === 20) {
+                if (i === 10) {
                     break;
                 } else {
                     var siteName = resultInfo[i].getAttribute("facilityName"),
