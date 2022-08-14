@@ -4,8 +4,23 @@
 --tritiary-colour: rgb(125, 82, 73);
 }
 
-/* temporary styling, might swap around CSS frameworks */
+/* created border to see work on grid for html content can be deleted later*/
+/*
+div {
+    border: 1px solid black
+}
 
+/* fonts start */
+body {
+    font-family: "Open Sans", sans-serif;
+    overflow-x: hidden;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-family: "DM Serif Display", sans-serif;
+}
+/* fonts end */
+/* header styling start */
 header {
     background-color: var(--secondary-colour);
     color: var(--main-colour);
@@ -16,22 +31,36 @@ header {
 header h1 {
     font-weight: bolder;
     font-size: 48px;
+    border: 5px solid var(--main-colour);
+    padding: 5px;
+    border-radius: 30% 30% 30% 30%;
+    /*width: 35%;
+    margin: auto;*/
 }
-
+/* header styling end */
+/* footer styling start */
 footer {
     background-color: var(--secondary-colour);
-    color: var(--main-colour);
     padding: 20px;
+    margin-top: 10px;
+}
+
+footer a {
     text-align: center;
     font-weight: bolder;
     font-size: 24px;
+    color: var(--main-colour);
+    text-decoration: none;
 }
 
+footer a:hover,
+footer a:focus {
+    color: var(--main-colour);
+}
+/* footer styling end */
+/* main styling start */
 main {
     min-height: 100%;
-}
-
-div .column {
     background-color: var(--main-colour);
     color: var(--tritiary-colour);
     padding: 5px;
@@ -40,7 +69,26 @@ div .column {
     font-size: 20px;
 }
 
-.border {
-    border: 1px solid black
+.content,
+.weather-map div {
+    min-height:100%;
 }
-/* created border to see work on grid for html content can be deleted later*/
+
+#campground-list,
+#weather,
+#map {
+    height: 50%;
+    padding: 0 15px 0 15px;
+    background-color: rgba(125, 82, 73, 0.15);
+    border: 5px solid var(--secondary-colour);
+    border-radius: 5%;
+}
+/* main styling end */
+
+/* media quieries */
+@media screen and (max-width: 1024px) {
+    .content,
+    .weather-map {
+        min-height: auto;
+    }
+}
