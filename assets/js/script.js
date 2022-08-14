@@ -1,5 +1,6 @@
 var locationInputEl = document.querySelector("#location");
 var formEl = document.querySelector("#form");
+var campgroundArray = [];
 
 // grabs coordinates from openweathermap api then runs them through the getCampground() function
 var getCoords = function(location) {
@@ -13,6 +14,7 @@ var getCoords = function(location) {
                 } else {
                     // if there are no errors, call getCampground() with lat and lon
                     getCampground(data[0].lat, data[0].lon);
+                    console.log(campgroundArray);
                 }
             });
         } else {
@@ -47,6 +49,8 @@ var getCampground = function(lat, lon) {
                 xmlDoc = parser.parseFromString(data, 'text/xml'),
                 resultInfo = xmlDoc.getElementsByTagName("result");
 
+            campgroundArray = [];
+
             // retrieves 20 campground names and displays them on DOM
             for (var i = 0; i < resultInfo.length; i++) {
                 if (i === 20) {
@@ -60,6 +64,13 @@ var getCampground = function(lat, lon) {
                     listItem.textContent = siteName;
                     camgroundList.append(listItem);
                     console.log(siteName + ": lat - " + siteLat + " lon - " + siteLon);
+
+                    var obj = {
+                        lat: siteLat,
+                        lon: siteLon
+                    };
+
+                    campgroundArray.push(obj);
                 }
             }
         });
