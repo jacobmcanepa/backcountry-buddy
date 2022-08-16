@@ -110,6 +110,29 @@ main {
 }
 /* Loader styling end */
 
+/* Campground button list style */
+.list-button {
+    background-color: var(--secondary-colour);
+    border-radius: 5px;
+    font-size: 18px;
+    line-height: 1.2;
+    transition: background-color 0.15s;
+}
+
+.list-button:hover {
+    background-color: var(--tritiary-colour);
+}
+
+.list-button:focus {
+    background-color: var(--tritiary-colour);
+}
+
+.list-button:active {
+    background-color: rgba(125, 82, 73, .6);
+    transition: background-color 0.15s;
+}
+/* button list style end */
+
 /* media quieries */
 @media screen and (max-width: 1024px) {
     .content,
