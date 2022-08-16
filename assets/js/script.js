@@ -51,7 +51,7 @@ var getCampground = function(lat, lon) {
 
             campgroundArray = [];
 
-            // retrieves 20 campground names and displays them on DOM
+            // retrieves x campground names and displays them on DOM
             for (var i = 0; i < resultInfo.length; i++) {
                 if (i === 10) {
                     break;
@@ -71,9 +71,26 @@ var getCampground = function(lat, lon) {
                     };
 
                     campgroundArray.push(obj);
+
+                    document.getElementById("map").append(campgroundMap(Number(siteLat),Number(siteLon)));
+                    
                 }
             }
         });
+};
+
+// map code
+var campgroundMap = function(lat,lng) {
+        let map;
+
+        function initMap() {
+        map = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: lat, lng: lng },
+            zoom: 8,
+        });
+        }
+
+        window.initMap = initMap();
 };
 
 formEl.addEventListener("submit", submitFormHandler);
