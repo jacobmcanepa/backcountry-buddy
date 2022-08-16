@@ -1,6 +1,7 @@
 var locationInputEl = document.querySelector("#location");
 var formEl = document.querySelector("#form");
 var campgroundArray = [];
+var loader = document.querySelector("#loading");
 
 // grabs coordinates from openweathermap api then runs them through the getCampground() function
 var getCoords = function(location) {
@@ -14,7 +15,6 @@ var getCoords = function(location) {
                 } else {
                     // if there are no errors, call getCampground() with lat and lon
                     getCampground(data[0].lat, data[0].lon);
-                    console.log(campgroundArray);
                 }
             });
         } else {
@@ -33,17 +33,20 @@ var submitFormHandler = function(event) {
     locationInputEl.value = "";
 };
 
-// displays list up to 20 campground names based on lat and lon
+// displays list up to 10 campground names based on lat and lon
 var getCampground = function(lat, lon) {
     var apiUrl = 'https://cors-anywhere.herokuapp.com/api.amp.active.com/camping/campgrounds?landmarkName=true&landmarkLat='+ lat + '&landmarkLong=' + lon + '&api_key=k5fj6q5tbyeter6ag6f4a6w7';
     var camgroundList = document.querySelector("#campground-ul");
     camgroundList.innerHTML = "";
+
+    displayLoading();
 
     fetch(apiUrl)
         .then((response) => {
             return response.text();
         })
         .then((data) => {
+            hideLoading();
             // parses through xml response
             var parser = new DOMParser(),
                 xmlDoc = parser.parseFromString(data, 'text/xml'),
@@ -51,7 +54,7 @@ var getCampground = function(lat, lon) {
 
             campgroundArray = [];
 
-            // retrieves 20 campground names and displays them on DOM
+            // retrieves 10 campground names and displays them on DOM
             for (var i = 0; i < resultInfo.length; i++) {
                 if (i === 10) {
                     break;
@@ -74,6 +77,14 @@ var getCampground = function(lat, lon) {
                 }
             }
         });
+};
+
+var displayLoading = function() {
+    loader.classList.add("display");
+};
+
+var hideLoading = function() {
+    loader.classList.remove("display");
 };
 
 formEl.addEventListener("submit", submitFormHandler);
