@@ -27,7 +27,7 @@
             <div class="cell small-shrink large-auto"></div>
         </header>
 
-        <main class="container grid-margin-y">
+        <main class="container grid-margin-y" id="main">
             <div class="content grid-x grid-margin-x grid-margin-y">
                 <!--campground column start
                 Will we append the list of campgrounds here based on a search? if so, leave this empty-->
@@ -38,8 +38,10 @@
                         <input placeholder="e.g. Lake Tahoe" type="text" autofocus="true" id="location" />
                         <button type="submit" class="button expanded">Search</button>
                     </form>
+
+                    <div id="loading"></div>
                     
-                    <ul id="campground-ul"></ul>
+                    <ul id="campground-ul" style="list-style: none; margin-left: 0px;"></ul>
                 </div>
                 <!--campground column end-->
                 <!--weather-map start-->
