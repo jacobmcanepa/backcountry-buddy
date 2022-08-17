@@ -16,7 +16,7 @@ var getCoords = function(location) {
                 } else {
                     // if there are no errors, call getCampground() with lat and lon
                     getCampground(data[0].lat, data[0].lon);
-                    // WEATHER FUNCTION should go here (I think) - Jacob
+                    // WEATHER FUNCTION with lat and lon parameters should go here - Jacob
                 }
             });
         } else {
@@ -112,7 +112,7 @@ var siteButtonHandler = function(event) {
     if (targetEl.matches(".list-button")) {
         // start parsing through the campgroundArray...
         for (var i = 0; i < campgroundArray.length; i++) {
-            // ...and if the target's id is equal two current index...
+            // ...and if the target's id is equal too current index...
             if (parseInt(id) === i) {
                 // ...console log lat and lon
                 console.log(campgroundArray[i].lat + ", " + campgroundArray[i].lon);
