@@ -1,6 +1,7 @@
 var locationInputEl = document.querySelector("#location");
 var formEl = document.querySelector("#form");
 var campgroundArray = [];
+var weatherLi = document.querySelector("#weather")
 
 // grabs coordinates from openweathermap api then runs them through the getCampground() function
 var getCoords = function(location) {
@@ -13,8 +14,11 @@ var getCoords = function(location) {
                     alert("Error: Please enter a valid city");
                 } else {
                     // if there are no errors, call getCampground() with lat and lon
+
+                    console.log(data);
                     getCampground(data[0].lat, data[0].lon);
-                    console.log(campgroundArray);
+
+                    getWeather(data[0].lat, data[0].lon);
                 }
             });
         } else {
@@ -63,7 +67,7 @@ var getCampground = function(lat, lon) {
                     var listItem = document.createElement("li");
                     listItem.textContent = siteName;
                     camgroundList.append(listItem);
-                    console.log(siteName + ": lat - " + siteLat + " lon - " + siteLon);
+                    //console.log(siteName + ": lat - " + siteLat + " lon - " + siteLon);
 
                     var obj = {
                         lat: siteLat,
@@ -75,5 +79,26 @@ var getCampground = function(lat, lon) {
             }
         });
 };
+
+var getWeather = function(lat, lon) {
+    var apiUrl = 'http://api.airvisual.com/v2/nearest_city?lat=' + lat + '&lon=' + lon + '&key=2711868a-3a16-4481-9a06-a393b93e1f74';
+    var weatherListEl = document.querySelector("#weather-ul");
+    weatherListEl.innerHTML = "";
+
+    fetch(apiUrl).then(function(response) {
+        if (response.ok) {
+            response.json().then(function(data) {
+                if (data.length === 0) {
+                    console.log("no data");
+                } else {
+                    console.log(data)
+                    console.log(data.data.current.weather)
+                }
+            });
+
+        }
+    })
+};
+
 
 formEl.addEventListener("submit", submitFormHandler);
