@@ -43,9 +43,12 @@ footer {
     background-color: var(--secondary-colour);
     padding: 20px;
     margin-top: 10px;
+    text-align: center;
+    z-index: -1;
 }
 
-footer a {
+footer a,
+footer div {
     text-align: center;
     font-weight: bolder;
     font-size: 24px;
@@ -89,8 +92,14 @@ main {
     height: auto;
 }
 
+#map-tab small {
+    color: var(--secondary-colour);
+    font-size: 25px;
+}
+
 #map {
-    height: 100%;
+    height: 600;
+    border-radius: 5%;
 }
 /* main styling end */
 

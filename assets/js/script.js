@@ -94,12 +94,16 @@ var getCampground = function(lat, lon) {
 
 // map code
 var campgroundMap = function(lat,lng) {
+    // clears old map or placeholder map
+    document.getElementById("map").innerHTML="";
+
+    // inserts map after click event is heard
         let map;
 
         function initMap() {
         map = new google.maps.Map(document.getElementById("map"), {
             center: { lat: lat, lng: lng },
-            zoom: 8,
+            zoom: 10,
         });
         }
 
