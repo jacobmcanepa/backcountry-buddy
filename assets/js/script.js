@@ -110,8 +110,6 @@ var campgroundMap = function(lat,lng) {
         window.initMap = initMap();
 };
 
-formEl.addEventListener("submit", submitFormHandler);
-
 // adds display class to loading div
 var displayLoading = function() {
     loader.classList.add("display");
