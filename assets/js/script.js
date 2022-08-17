@@ -3,7 +3,7 @@ var formEl = document.querySelector("#form");
 var campgroundArray = [];
 var loader = document.querySelector("#loading");
 var mainEl = document.querySelector("#main");
-var weatherLi = document.querySelector("#weather")
+var weatherEl = document.querySelector("#weather")
 
 // grabs coordinates from openweathermap api then runs them through the getCampground() function
 var getCoords = function(location) {
@@ -128,8 +128,8 @@ var siteButtonHandler = function(event) {
 
 var getWeather = function(lat, lon) {
     var apiUrl = 'http://api.airvisual.com/v2/nearest_city?lat=' + lat + '&lon=' + lon + '&key=2711868a-3a16-4481-9a06-a393b93e1f74';
-    var weatherListEl = document.querySelector("#weather-ul");
-    weatherListEl.innerHTML = "";
+    var weatherUl = document.querySelector("#weather-ul");
+    weatherUl.innerHTML = "";
 
     fetch(apiUrl).then(function(response) {
         if (response.ok) {
@@ -138,7 +138,24 @@ var getWeather = function(lat, lon) {
                     console.log("no data");
                 } else {
                     console.log(data)
-                    console.log(data.data.current.weather)
+                    var icon = data.data.current.weather.ic;
+                    var cTemp = data.data.current.weather.tp;
+                    // console.log(cTemp);
+                    var fTemp = (cTemp * 9/5) + 32;
+                    var tempString = JSON.stringify(fTemp);
+                    // console.log(fTemp);
+                    var cardEl = document.createElement("card");
+                    cardEl.classList = "weather cell small-4";
+                    cardEl.textContent = tempString + '°F';
+                    console.log(cardEl);
+
+                    var iconUrl = "https://airvisual.com/images/" + icon + ".png"
+                    var imgEl = document.createElement('img');
+                    imgEl.setAttribute('id', 'weather-icon');
+                    imgEl.setAttribute('class', 'cell small-4');
+                    imgEl.setAttribute('src', iconUrl);
+                    weatherUl.appendChild(imgEl);
+                    weatherUl.appendChild(cardEl);
                 }
             });
 

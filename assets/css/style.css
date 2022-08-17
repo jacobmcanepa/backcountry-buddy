@@ -133,6 +133,11 @@ main {
 }
 /* button list style end */
 
+#weather-icon {
+    width: 99.71px;
+    height: 60px;
+}
+
 /* media quieries */
 @media screen and (max-width: 1024px) {
     .content,
