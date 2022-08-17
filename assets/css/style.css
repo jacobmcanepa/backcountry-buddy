@@ -85,6 +85,54 @@ main {
 }
 /* main styling end */
 
+/* Loader styling */
+#loading {
+    width: 2rem; height: 2rem;
+    border: 5px solid #f3f3f3;
+    border-top: 6px solid #3498db;
+    border-radius: 100%;
+    margin: auto;
+    visibility: hidden;
+    animation: spin 1s infinite linear;
+}
+
+#loading.display {
+    visibility: visible;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+/* Loader styling end */
+
+/* Campground button list style */
+.list-button {
+    background-color: var(--secondary-colour);
+    border-radius: 5px;
+    font-size: 18px;
+    line-height: 1.2;
+    transition: background-color 0.15s;
+}
+
+.list-button:hover {
+    background-color: var(--tritiary-colour);
+}
+
+.list-button:focus {
+    background-color: var(--tritiary-colour);
+}
+
+.list-button:active {
+    background-color: rgba(125, 82, 73, .6);
+    transition: background-color 0.15s;
+}
+/* button list style end */
+
 /* media quieries */
 @media screen and (max-width: 1024px) {
     .content,
