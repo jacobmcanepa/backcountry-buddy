@@ -3,7 +3,9 @@ var formEl = document.querySelector("#form");
 var campgroundArray = [];
 var loader = document.querySelector("#loading");
 var mainEl = document.querySelector("#main");
-var weatherEl = document.querySelector("#weather")
+var weatherEl = document.querySelector("#weather");
+var saved = JSON.parse(localStorage.getItem("campsites")) || [];
+var camgroundList = document.querySelector("#campground-ul");
 
 // grabs coordinates from openweathermap api then runs them through the getCampground() function
 var getCoords = function(location) {
@@ -32,6 +34,7 @@ var getCoords = function(location) {
 // form input handler
 var submitFormHandler = function(event) {
     event.preventDefault();
+    saved = [];
 
     // retrieves value of form input and calls getCoords(), then clears input value
     var location = locationInputEl.value.trim();
@@ -42,7 +45,6 @@ var submitFormHandler = function(event) {
 // displays list up to 10 campground names based on lat and lon
 var getCampground = function(lat, lon) {
     var apiUrl = 'https://cors-anywhere.herokuapp.com/api.amp.active.com/camping/campgrounds?landmarkName=true&landmarkLat='+ lat + '&landmarkLong=' + lon + '&api_key=k5fj6q5tbyeter6ag6f4a6w7';
-    var camgroundList = document.querySelector("#campground-ul");
     camgroundList.innerHTML = "";
 
     // shows loading symbol while api is fetching data
@@ -87,12 +89,14 @@ var getCampground = function(lat, lon) {
 
                     var obj = {
                         lat: siteLat,
-                        lon: siteLon
+                        lon: siteLon,
+                        name: siteName
                     };
 
                     campgroundArray.push(obj);
                 }
             }
+            localStorage.setItem("campsites", JSON.stringify(campgroundArray));
         });
 };
 
@@ -131,7 +135,7 @@ var siteButtonHandler = function(event) {
         id = targetEl.getAttribute("id");
 
     // if a button with a class of list-button is clicked...
-    if (targetEl.matches(".list-button")) {
+    if (targetEl.matches(".list-button") && saved.length === 0) {
         // start parsing through the campgroundArray...
         for (var i = 0; i < campgroundArray.length; i++) {
             // ...and if the target's id is equal too current index...
@@ -139,10 +143,21 @@ var siteButtonHandler = function(event) {
                 // ...console log lat and lon
                 console.log(campgroundArray[i].lat + ", " + campgroundArray[i].lon);
                 // MAP FUNCTION with lat and lon parameters would go here - Jacob
-                var lat = parseFloat(campgroundArray[i].lat)
+                var lat = parseFloat(campgroundArray[i].lat),
                     lon = parseFloat(campgroundArray[i].lon);
                     
                 campgroundMap(lat,lon);
+            }
+        }
+    }
+
+    else if (targetEl.matches(".list-button") && campgroundArray.length === 0) {
+        for (var i = 0; i < saved.length; i++) {
+            if (parseInt(id) === i) {
+                var lat = parseFloat(saved[i].lat),
+                    lon = parseFloat(saved[i].lon);
+
+                campgroundMap(lat, lon);
             }
         }
     }
@@ -185,6 +200,25 @@ var getWeather = function(lat, lon) {
     })
 };
 
+var loadSites = function() {
+    getWeather(saved[0].lat, saved[0].lon);
+    var buttonID = 0
 
+    for (var i = 0; i < saved.length; i++) {
+        var listItem = document.createElement("li");
+        listItem.className = "text-center";
+
+        var buttonEl = document.createElement("button");
+        buttonEl.classList = "button expanded list-button";
+        buttonEl.setAttribute("id", buttonID);
+        buttonID++
+        buttonEl.textContent = saved[i].name;
+
+        listItem.appendChild(buttonEl);
+        camgroundList.append(listItem);
+    }
+};
+
+loadSites();
 formEl.addEventListener("submit", submitFormHandler);
 mainEl.addEventListener("click", siteButtonHandler);
