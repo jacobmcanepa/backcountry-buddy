@@ -98,7 +98,7 @@ var getCampground = function(lat, lon) {
 };
 
 // map code
-var campgroundMap = function(lat,lng) {
+var campgroundMap = function(lat, lng, name) {
     // clears old map or placeholder map
     document.getElementById("map").innerHTML="";
 
@@ -109,6 +109,12 @@ var campgroundMap = function(lat,lng) {
         map = new google.maps.Map(document.getElementById("map"), {
             center: { lat: lat, lng: lng },
             zoom: 10,
+        });
+
+        new google.maps.Marker({
+            position: {lat: lat, lng, lng},
+            map,
+            title: name,
         });
         }
 
@@ -139,9 +145,10 @@ var siteButtonHandler = function(event) {
             if (parseInt(id) === i) {
                 // display map
                 var lat = parseFloat(campgroundArray[i].lat),
-                    lon = parseFloat(campgroundArray[i].lon);
+                    lon = parseFloat(campgroundArray[i].lon),
+                    name = campgroundArray[i].name;
                     
-                campgroundMap(lat,lon);
+                campgroundMap(lat, lon, name);
             }
         }
     }
@@ -154,9 +161,10 @@ var siteButtonHandler = function(event) {
             if (parseInt(id) === i) {
                 // display map
                 var lat = parseFloat(saved[i].lat),
-                    lon = parseFloat(saved[i].lon);
+                    lon = parseFloat(saved[i].lon),
+                    name = saved[i].name;
 
-                campgroundMap(lat, lon);
+                campgroundMap(lat, lon, name);
             }
         }
     }
