@@ -163,7 +163,7 @@ var siteButtonHandler = function(event) {
 };
 
 var getWeather = function(lat, lon) {
-    var apiUrl = 'http://api.airvisual.com/v2/nearest_city?lat=' + lat + '&lon=' + lon + '&key=2711868a-3a16-4481-9a06-a393b93e1f74';
+    var apiUrl = 'https://api.airvisual.com/v2/nearest_city?lat=' + lat + '&lon=' + lon + '&key=2711868a-3a16-4481-9a06-a393b93e1f74';
     var weatherUl = document.querySelector("#weather-ul");
     weatherUl.innerHTML = "";
 
