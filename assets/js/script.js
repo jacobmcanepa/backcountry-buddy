@@ -170,6 +170,7 @@ var siteButtonHandler = function(event) {
     }
 };
 
+// get weather data for origin point by getting lat/lon from getcoords function
 var getWeather = function(lat, lon) {
     var apiUrl = 'https://api.airvisual.com/v2/nearest_city?lat=' + lat + '&lon=' + lon + '&key=2711868a-3a16-4481-9a06-a393b93e1f74';
     var weatherUl = document.querySelector("#weather-ul");
@@ -182,17 +183,22 @@ var getWeather = function(lat, lon) {
                     console.log("no data");
                 } else {
                     console.log(data)
+                    // pull icon code for current weather conditions from API
                     var icon = data.data.current.weather.ic;
+                    // pull temp given in celsius from api
                     var cTemp = data.data.current.weather.tp;
-                    // console.log(cTemp);
+                    // convert C to F
                     var fTemp = (cTemp * 9/5) + 32;
+                    // turn data into text string
                     var tempString = JSON.stringify(fTemp);
-                    // console.log(fTemp);
+                    
+                    // create DOM element to display temp
                     var cardEl = document.createElement("card");
                     cardEl.classList = "weather cell small-4";
                     cardEl.textContent = tempString + '°F';
                     console.log(cardEl);
 
+                    // create DOM element to display weather icon
                     var iconUrl = "https://airvisual.com/images/" + icon + ".png"
                     var imgEl = document.createElement('img');
                     imgEl.setAttribute('id', 'weather-icon');
