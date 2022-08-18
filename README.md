@@ -20,10 +20,13 @@ I WANT TO search a location
 SO THAT I can find local campgrounds and weather data
 
 ### Screenshots
-Page on load
+* Page on load<br />
 ![](assets/images/onload.png)
-Search results
+
+* Search results<br />
 ![](assets/images/searchresults.png)
-Weather
+
+* Weather<br />
 ![](assets/images/weather.png)
-Map
+
+* Map<br />
