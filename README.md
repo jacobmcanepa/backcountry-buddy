@@ -30,3 +30,15 @@ SO THAT I can find local campgrounds and weather data
 ![](assets/images/weather.png)
 
 * Map<br />
+
+### Links
+* Github repository
+    * https://github.com/jacobmcanepa/backcountry-buddy
+* Github pages
+    * https://jacobmcanepa.github.io/backcountry-buddy/
+
+### Credit
+* Jacob Canepa
+* Nathan Hur
+* Jocelyn Valladares
+* Huy Nguyen
