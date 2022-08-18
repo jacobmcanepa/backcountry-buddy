@@ -200,8 +200,11 @@ var getWeather = function(lat, lon) {
 };
 
 var loadSites = function() {
-    getWeather(saved[0].lat, saved[0].lon);
     var buttonID = 0
+
+    if (saved.length !== 0) {
+        getWeather(saved[0].lat, saved[0].lon);
+    }
 
     for (var i = 0; i < saved.length; i++) {
         var listItem = document.createElement("li");
