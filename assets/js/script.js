@@ -112,7 +112,7 @@ var campgroundMap = function(lat, lng, name) {
         });
 
         new google.maps.Marker({
-            position: {lat: lat, lng, lng},
+            position: {lat: lat, lng: lng},
             map,
             title: name,
         });
