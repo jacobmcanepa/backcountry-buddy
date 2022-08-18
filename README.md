@@ -40,5 +40,5 @@ SO THAT I can find local campgrounds and weather data
 ### Credit
 * <a href="https://github.com/jacobmcanepa" target="_blank">Jacob Canepa</a>
 * <a href="https://github.com/nHur2004" target="_blank">Nathan Hur</a>
-* <a href="" target="_blank">Jocelyn Valladares</a>
+* <a href="https://github.com/jocelynvalladares" target="_blank">Jocelyn Valladares</a>
 * <a href="https://github.com/idahuy" target="_blank">Huy Nguyen</a>
