@@ -18,10 +18,7 @@ var getCoords = function(location) {
                     alert("Error: Please enter a valid city");
                 } else {
                     // if there are no errors, call getCampground() with lat and lon
-
-                    console.log(data);
                     getCampground(data[0].lat, data[0].lon);
-
                     getWeather(data[0].lat, data[0].lon);
                 }
             });
@@ -65,7 +62,6 @@ var getCampground = function(lat, lon) {
             campgroundArray = [];
             var buttonID = 0;
             // retrieves x campground names and displays them on DOM
-            // retrieves 10 campground names and displays them on DOM
             for (var i = 0; i < resultInfo.length; i++) {
                 if (i === 10) {
                     break;
@@ -96,6 +92,7 @@ var getCampground = function(lat, lon) {
                     campgroundArray.push(obj);
                 }
             }
+            
             localStorage.setItem("campsites", JSON.stringify(campgroundArray));
         });
 };
@@ -134,15 +131,13 @@ var siteButtonHandler = function(event) {
     var targetEl = event.target,
         id = targetEl.getAttribute("id");
 
-    // if a button with a class of list-button is clicked...
+    // if a button with a class of list-button is clicked & "saved" array is empty...
     if (targetEl.matches(".list-button") && saved.length === 0) {
         // start parsing through the campgroundArray...
         for (var i = 0; i < campgroundArray.length; i++) {
             // ...and if the target's id is equal too current index...
             if (parseInt(id) === i) {
-                // ...console log lat and lon
-                console.log(campgroundArray[i].lat + ", " + campgroundArray[i].lon);
-                // MAP FUNCTION with lat and lon parameters would go here - Jacob
+                // display map
                 var lat = parseFloat(campgroundArray[i].lat),
                     lon = parseFloat(campgroundArray[i].lon);
                     
@@ -151,9 +146,13 @@ var siteButtonHandler = function(event) {
         }
     }
 
+    // if button with class of list-button is clicked & "campgroundArray" is empty...
     else if (targetEl.matches(".list-button") && campgroundArray.length === 0) {
+        // start parsing through the "saved" array
         for (var i = 0; i < saved.length; i++) {
+            //... and if target's id is equal to current index...
             if (parseInt(id) === i) {
+                // display map
                 var lat = parseFloat(saved[i].lat),
                     lon = parseFloat(saved[i].lon);
 
