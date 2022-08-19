@@ -30,6 +30,7 @@ SO THAT I can find local campgrounds and weather data
 ![](assets/images/weather.png)
 
 * Map<br />
+![](assets/images/map.png)
 
 ### Links
 * Github repository
