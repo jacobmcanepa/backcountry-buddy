@@ -19,7 +19,7 @@ var getCoords = function(location) {
                 } else {
                     // if there are no errors, call getCampground() with lat and lon
                     getCampground(data[0].lat, data[0].lon);
-                    getWeather(data[0].lat, data[0].lon);
+                    //getWeather(data[0].lat, data[0].lon);
                 }
             });
         } else {
@@ -149,6 +149,7 @@ var siteButtonHandler = function(event) {
                     name = campgroundArray[i].name;
                     
                 campgroundMap(lat, lon, name);
+                getWeather(lat, lon);
             }
         }
     }
