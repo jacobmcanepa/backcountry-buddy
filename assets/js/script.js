@@ -19,7 +19,7 @@ var getCoords = function(location) {
                 } else {
                     // if there are no errors, call getCampground() with lat and lon
                     getCampground(data[0].lat, data[0].lon);
-                    getWeather(data[0].lat, data[0].lon);
+                    //getWeather(data[0].lat, data[0].lon);
                 }
             });
         } else {
@@ -149,6 +149,7 @@ var siteButtonHandler = function(event) {
                     name = campgroundArray[i].name;
                     
                 campgroundMap(lat, lon, name);
+                getWeather(lat, lon);
             }
         }
     }
@@ -165,52 +166,38 @@ var siteButtonHandler = function(event) {
                     name = saved[i].name;
 
                 campgroundMap(lat, lon, name);
+                getWeather(lat, lon);
             }
         }
     }
 };
 
 // get weather data for origin point by getting lat/lon from getcoords function
-var getWeather = function(lat, lon) {
-    var apiUrl = 'https://api.airvisual.com/v2/nearest_city?lat=' + lat + '&lon=' + lon + '&key=2711868a-3a16-4481-9a06-a393b93e1f74';
-    var weatherUl = document.querySelector("#weather-ul");
-    weatherUl.innerHTML = "";
+var getWeather = (lat, lon) => {
+    var apiUrl = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/weatherdata/forecast?locations=" + lat + "," + lon + "&aggregateHours=24&forecastDays=5&unitGroup=us&shortColumnNames=false&contentType=json&locationMode=single&key=654PZ3CWHV36VXZPG7J5EFCTF"
+    var arr = [];
 
-    fetch(apiUrl).then(function(response) {
-        if (response.ok) {
-            response.json().then(function(data) {
-                if (data.length === 0) {
-                    console.log("no data");
-                } else {
-                    console.log(data)
-                    // pull icon code for current weather conditions from API
-                    var icon = data.data.current.weather.ic;
-                    // pull temp given in celsius from api
-                    var cTemp = data.data.current.weather.tp;
-                    // convert C to F
-                    var fTemp = (cTemp * 9/5) + 32;
-                    // turn data into text string
-                    var tempString = JSON.stringify(fTemp);
-                    
-                    // create DOM element to display temp
-                    var cardEl = document.createElement("card");
-                    cardEl.classList = "weather cell small-4";
-                    cardEl.textContent = tempString + '°F';
-                    console.log(cardEl);
+    fetch(apiUrl).then(response => {
+        response.json().then(data => {
+            //console.log(data.location.values);
+            var forecastArr = data.location.values;
 
-                    // create DOM element to display weather icon
-                    var iconUrl = "https://airvisual.com/images/" + icon + ".png"
-                    var imgEl = document.createElement('img');
-                    imgEl.setAttribute('id', 'weather-icon');
-                    imgEl.setAttribute('class', 'cell small-4');
-                    imgEl.setAttribute('src', iconUrl);
-                    weatherUl.appendChild(imgEl);
-                    weatherUl.appendChild(cardEl);
-                }
-            });
+            for (var i = 0; i < forecastArr.length; i++) {
+                var obj = {
+                    id: i,
+                    maxt: forecastArr[i].maxt,
+                    mint: forecastArr[i].mint,
+                    humidity: forecastArr[i].humidity,
+                    wspd: forecastArr[i].wspd,
+                    uvindex: forecastArr[i].uvindex,
+                    dateTime: forecastArr[i].datetimeStr
+                };
 
-        }
-    })
+                arr.push(obj);
+            }
+            console.log(arr);
+        });
+    });
 };
 
 var loadSites = function() {
