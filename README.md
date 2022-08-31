@@ -37,6 +37,8 @@ SO THAT I can find local campgrounds and weather data
     * https://github.com/jacobmcanepa/backcountry-buddy
 * Github pages
     * https://jacobmcanepa.github.io/backcountry-buddy/
+* Cors Anywhere
+    * https://cors-anywhere.herokuapp.com/corsdemo 
 
 ### Credit
 * <a href="https://github.com/jacobmcanepa" target="_blank">Jacob Canepa</a>
